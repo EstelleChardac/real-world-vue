@@ -10,7 +10,7 @@ import EventCard from "@/components/EventCard.vue";
 
 export default {
   // eslint-disable-next-line
-  name: "Home",
+  name: "EventList",
   components: {
     EventCard,
   },
@@ -18,7 +18,7 @@ export default {
     return {
       events: [
         {
-          id: 58,
+          id: 1,
           category: "beach cleaning",
           title: "Cleaning Parlementia",
           bringBags: true,
@@ -27,12 +27,12 @@ export default {
         },
 
         {
-          id: 59,
-          category: "house cleaning",
-          title: "Cleaning Guethary",
+          id: 2,
+          category: "yard sale",
+          title: "Yard sale in Guethary",
           bringBags: true,
-          time: "12.30",
-          date: "January 13",
+          time: "8.30",
+          date: "September 13",
         },
       ],
     };
