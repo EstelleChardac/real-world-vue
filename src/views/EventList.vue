@@ -7,35 +7,26 @@
 <script>
 // @ is an alias to /src
 import EventCard from "@/components/EventCard.vue";
+import EventService from "@/services/EventService.js";
 
 export default {
-  // eslint-disable-next-line
   name: "EventList",
   components: {
     EventCard,
   },
   data() {
     return {
-      events: [
-        {
-          id: 1,
-          category: "beach cleaning",
-          title: "Cleaning Parlementia",
-          bringBags: true,
-          time: "12.30",
-          date: "January 12",
-        },
-
-        {
-          id: 2,
-          category: "yard sale",
-          title: "Yard sale in Guethary",
-          bringBags: true,
-          time: "8.30",
-          date: "September 13",
-        },
-      ],
+      events: null,
     };
+  },
+  created() {
+    EventService.getEvents()
+      .then((response) => {
+        this.events = response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   },
 };
 </script>
