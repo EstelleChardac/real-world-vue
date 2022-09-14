@@ -3,9 +3,28 @@
     <router-link to="/">Events</router-link> |
     <router-link to="/about">About</router-link>
   </nav>
+  <p v-show="time">Hello! Il est {{ time }}</p>
   <h1>Cool events</h1>
   <router-view />
 </template>
+
+<script>
+export default {
+  name: "CurrentTime",
+  data: () => ({
+    time: "",
+  }),
+
+  methods: {
+    getTime: function () {
+      return new Date().toLocaleTimeString();
+    },
+  },
+  mounted: function () {
+    this.time = this.getTime();
+  },
+};
+</script>
 
 <style>
 #app {
