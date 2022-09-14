@@ -3,9 +3,9 @@
     <router-link to="/">Events</router-link> |
     <router-link to="/about">About</router-link>
   </nav>
-  <p v-show="time">Hello! Il est {{ time }}</p>
-  <h1>Cool events</h1>
+  <h1>Cool events for the planet</h1>
   <router-view />
+  <p v-show="time" class="time">Hello! Il est {{ time }}</p>
 </template>
 
 <script>
@@ -33,6 +33,8 @@ export default {
   font-size: 0.8rem;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  flex-direction: column;
   text-align: center;
 }
 
@@ -60,5 +62,9 @@ nav a {
 
 nav a.router-link-exact-active {
   color: rgb(238, 9, 47);
+}
+
+.time {
+  align-content: flex-end;
 }
 </style>
