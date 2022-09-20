@@ -6,28 +6,13 @@
   </nav>
   <h1>Cool events for the planet</h1>
   <router-view />
-  <p v-show="time" class="time">Hello! Il est {{ time }}</p>
 </template>
 
 <script>
 import SimpleForm from "@/views/SimpleForm";
 
 export default {
-  name: "CurrentTime",
-  data: () => ({
-    time: "",
-  }),
-
   components: { SimpleForm },
-
-  methods: {
-    getTime: function () {
-      return new Date().toLocaleTimeString();
-    },
-  },
-  mounted: function () {
-    this.time = this.getTime();
-  },
 };
 </script>
 
@@ -81,7 +66,7 @@ html {
 body {
   margin: 0;
 
-  line-height: 1.5;
+  line-height: 1.2;
 }
 #app {
   box-sizing: border-box;
