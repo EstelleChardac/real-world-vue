@@ -2,7 +2,8 @@
   <nav>
     <router-link to="/">Events</router-link> |
     <router-link to="/about">About</router-link> |
-    <router-link to="/form">Form</router-link>
+    <router-link to="/form">Form</router-link> |
+    <router-link to="/shoppinglist">Shopping List</router-link>
   </nav>
   <h1>Cool events for the planet</h1>
   <router-view />

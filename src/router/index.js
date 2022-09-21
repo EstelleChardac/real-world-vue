@@ -3,6 +3,7 @@ import EventList from "../views/EventList.vue";
 import About from "../views/About.vue";
 import EventDetails from "../views/EventDetails.vue";
 import Form from "../views/SimpleForm.vue";
+import ShoppingList from "../views/ShoppingList.vue";
 
 const routes = [
   {
@@ -25,6 +26,11 @@ const routes = [
     path: "/form",
     name: "Form",
     component: Form,
+  },
+  {
+    path: "/shoppinglist",
+    name: "ShoppingList",
+    component: ShoppingList,
   },
 ];
 
