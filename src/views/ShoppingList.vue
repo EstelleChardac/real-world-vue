@@ -2,22 +2,36 @@
 import { ref, computed } from "vue";
 
 const header = ref("List of things to bring");
-const characterCount = computed(() => {
-  return newThing.value.length;
-});
+const characterCount = computed(() => newThing.value.length);
 const editing = ref(false);
 
 //e=short for "editing"
 const doEdit = (e) => {
   editing.value = e;
   newThing.value = "";
+  newThingHighPriority.value = "";
 };
-const items = ref([]);
+const items = ref([
+  { id: 1, label: "10 gloves", purchased: true, highPriority: true },
+  { id: 2, label: "1 big bag", purchased: true, highPriority: true },
+  { id: 3, label: "Good mood", purchased: false, highPriority: false },
+]);
+const reversedItems = computed(() => {
+  return [...items.value].reverse();
+});
 const newThing = ref("");
 const newThingHighPriority = ref(false);
 const saveThing = () => {
-  items.value.push({ id: items.value.length + 1, label: newThing.value });
+  items.value.push({
+    id: items.value.length + 1,
+    label: newThing.value,
+    highPriority: newThingHighPriority.value,
+  });
   newThing.value = "";
+  newThingHighPriority.value = "";
+};
+const togglePurchased = (item) => {
+  item.purchased = !item.purchased;
 };
 </script>
 
@@ -30,7 +44,26 @@ const saveThing = () => {
     Add a thing
   </button>
 
-  <li v-for="({ id, label }, index) in items" :key="id">{{ label }}</li>
+  <!-- <li
+    v-for="({ id, label, purchased, highPriority }, index) in reversedItems"
+    :key="id"
+    class="static-class"
+    :class="{ strikeout: purchased, priority: highPriority }"
+  >
+    {{ label }}
+  </li> -->
+  <li
+    v-for="(item, index) in reversedItems"
+    @click="togglePurchased(item)"
+    :key="item.id"
+    class="static-class"
+    :class="[
+      item.purchased ? 'strikeout text-pink' : 'underline',
+      item.highPriority ? 'priority' : '',
+    ]"
+  >
+    {{ item.label }}
+  </li>
   <form class="add-item-form" v-if="editing" @submit.prevent="saveThing">
     <input type="text" v-model="newThing" placeholder="Add another thing" />
     {{ newThing }}
