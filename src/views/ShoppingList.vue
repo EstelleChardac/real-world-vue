@@ -1,11 +1,63 @@
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 
-const header = ref("Shopping List App");
+const header = ref("List of things to bring");
+const characterCount = computed(() => {
+  return newThing.value.length;
+});
+const editing = ref(false);
+
+//e=short for "editing"
+const doEdit = (e) => {
+  editing.value = e;
+  newThing.value = "";
+};
+const items = ref([]);
+const newThing = ref("");
+const newThingHighPriority = ref(false);
+const saveThing = () => {
+  items.value.push({ id: items.value.length + 1, label: newThing.value });
+  newThing.value = "";
+};
 </script>
 
 <template>
-  <h1>{{ header }}</h1>
+  <div class="header">
+    <h2>{{ header }}</h2>
+  </div>
+  <button v-if="editing" class="btn" @click="doEdit(false)">Cancel</button>
+  <button v-else class="btn btn-primary" @click="doEdit(true)">
+    Add a thing
+  </button>
+
+  <li v-for="({ id, label }, index) in items" :key="id">{{ label }}</li>
+  <form class="add-item-form" v-if="editing" @submit.prevent="saveThing">
+    <input type="text" v-model="newThing" placeholder="Add another thing" />
+    {{ newThing }}
+    <p class="counter">{{ characterCount }}/200</p>
+    Priority :
+    <!-- <label
+    ><input type="radio" v-model="newThingPriority" value="low" />Low</label
+  >
+  <label>
+    <input type="radio" v-model="newThingPriority" value="high" />High</label
+  > -->
+    <!-- <select v-model="newThingPriority">
+    <option value="low">Low</option>
+    <option value="high">High</option>
+  </select> -->
+    <!-- <label>
+      <input type="checkbox" v-model="newThingsToAdd" value="goodmood" />
+      Good mood
+    </label> -->
+    <br />
+    <label>
+      <input type="checkbox" v-model="newThingHighPriority" value="high" />
+      High
+    </label>
+    <button :disabled="newThing.length === 0" class="btn">Save thing</button>
+  </form>
+  <p v-if="!items.length">Nothing to see here</p>
 </template>
 
 <style scoped>
@@ -96,8 +148,8 @@ li input {
 .add-item-form,
 .header {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .add-item-form input {
