@@ -1,10 +1,10 @@
 import axios from "axios";
 
 const apiClient = axios.create({
-  baseURL: "https://my-json-server.typicode.com/EstelleChardac/bogusdb",
+  baseURL: "http://localhost:3000",
 
   withCredentials: false,
-  hearders: {
+  headers: {
     Accept: "application/json",
     "Content-type": "application/json",
   },
@@ -16,5 +16,8 @@ export default {
   },
   getEvent(id) {
     return apiClient.get("/events/" + id);
+  },
+  postEvent(event) {
+    return apiClient.post("/events", event);
   },
 };
