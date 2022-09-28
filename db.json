@@ -29,6 +29,16 @@
       "date": "22/03",
       "time": "6am",
       "organizer": "Estelle"
+    },
+    {
+      "id": "472fd1eb-ce94-4d6c-a38a-230680fe0a15",
+      "category": "nature",
+      "title": "help cats",
+      "description": "give them food",
+      "location": "bidart",
+      "date": "2209",
+      "time": "6",
+      "organizer": "Estelle"
     }
   ]
 }

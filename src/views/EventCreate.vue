@@ -42,6 +42,8 @@
       <button type="submit">Submit</button>
     </form>
   </div>
+  <!-- //hack to check if the data was correctly pushed up to the vuex store, otherwise use vuedevtools / vuex
+  <div>{{ $store.state.events }}</div> -->
 </template>
 
 <script>
@@ -91,6 +93,7 @@ export default {
       EventService.postEvent(event)
         .then(() => {
           //add an event to the Vuex state
+          this.$store.commit("ADD_EVENT", event);
         })
         .catch((error) => {
           console.log(error);

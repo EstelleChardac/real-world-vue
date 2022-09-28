@@ -4,9 +4,14 @@ export default createStore({
   state: {
     //creating a new user state
     user: "Estelle",
+    events: [],
   },
   getters: {},
-  mutations: {},
+  mutations: {
+    ADD_EVENT(state, event) {
+      state.events.push(event);
+    },
+  },
   actions: {},
   modules: {},
 });
